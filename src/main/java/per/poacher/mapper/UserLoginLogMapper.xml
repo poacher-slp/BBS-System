@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.poacher.mapper.UserLoginLogMapper">
+
+    <insert id="addUserLoginLog" parameterType="UserLoginLog">
+        INSERT INTO login_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null and userName != ''">
+                user_name,
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                login_ip,
+            </if>
+            <if test="loginDateTime != null">
+                login_datetime
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null and userName != ''">
+                #{userName},
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                #{loginIp},
+            </if>
+            <if test="loginDateTime != null">
+                #{loginDateTime}
+            </if>
+        </trim>
+    </insert>
+</mapper>

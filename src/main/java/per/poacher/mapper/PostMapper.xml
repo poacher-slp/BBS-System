@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.poacher.mapper.PostMapper">
+
+    <insert id="addPost" parameterType="Post" keyProperty="postId" useGeneratedKeys="true">
+        INSERT INTO post
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="postBoardId != null and postBoardId != ''">
+                post_board_id,
+            </if>
+            <if test="postUserName != null and postUserName != ''">
+                post_user_name,
+            </if>
+            <if test="postTitle != null and postTitle != ''">
+                post_title,
+            </if>
+            <if test="postContent != null and postContent != ''">
+                post_content,
+            </if>
+            <if test="postCreateTime != null">
+                post_create_time,
+            </if>
+            <if test="postUpdateTime != null">
+                post_update_time
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="postBoardId != null and postBoardId != ''">
+                #{postBoardId},
+            </if>
+            <if test="postUserName != null and postUserName != ''">
+                #{postUserName},
+            </if>
+            <if test="postTitle != null and postTitle != ''">
+                #{postTitle},
+            </if>
+            <if test="postContent != null and postContent != ''">
+                #{postContent},
+            </if>
+            <if test="postCreateTime != null">
+                #{postCreateTime},
+            </if>
+            <if test="postUpdateTime != null">
+                #{postUpdateTime}
+            </if>
+        </trim>
+    </insert>
+</mapper>
